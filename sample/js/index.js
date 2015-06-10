@@ -81,13 +81,22 @@ var app = {
         var success = function() {
           document.getElementById('hide_map').style.display = 'block';
           document.getElementById('show_map').style.display = 'none';
-          mapKit.addMapPins(pins, function() { 
-                                      console.log('adMapPins success');  
+          mapKit.addMapPins(pins, function() {
+                                      console.log('adMapPins success');
                                       document.getElementById('clear_map_pins').style.display = 'block';
                                   },
                                   function() { console.log('error'); });
         };
         mapKit.showMap(success, error);
+        setTimeout(function(){
+            var btn = [
+                {
+                    PosX: 10,
+                    PosY: 10
+                }
+            ];
+            mapKit.addCloseButton(btn, success, error);
+        }, 3000);
     },
     hideMap: function() {
         var success = function() {

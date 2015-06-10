@@ -51,6 +51,9 @@
 		hideMap: function(success, error) {
 			cordovaRef.exec(success, error, 'MapKit', 'hideMap', []);
 		},
+                          addCloseButton: function(btn, success, error) {
+                                       cordovaRef.exec(success, error, 'MapKit', 'addCloseButton', [btn]);
+                         },
 
 		changeMapType: function(mapType, success, error) {
 			cordovaRef.exec(success, error, 'MapKit', 'changeMapType', [mapType ? { "mapType": mapType } :{ "mapType": 0 }]);

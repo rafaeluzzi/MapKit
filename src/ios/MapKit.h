@@ -9,7 +9,7 @@
 
 #import <Cordova/CDVPlugin.h>
 
-@interface MapKitView : CDVPlugin <MKMapViewDelegate> 
+@interface MapKitView : CDVPlugin <MKMapViewDelegate>
 {
 }
 
@@ -33,5 +33,7 @@
 - (void)clearMapPins:(CDVInvokedUrlCommand *)command;
 
 - (void)addMapPins:(CDVInvokedUrlCommand *)command;
+
+- (void)addCloseButton:(CDVInvokedUrlCommand *)command;
 
 @end

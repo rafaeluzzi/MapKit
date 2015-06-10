@@ -147,11 +147,38 @@
 	self.mapView.showsUserLocation = YES;
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
+// Add a Close Button
+- (void)addCloseButton:(CDVInvokedUrlCommand *)command
+{
+    if (!self.mapView || self.childView.hidden==YES)
+    {
+        return;
+    }
+    NSLog(@"CLOSE BUTTON");
+    NSArray *btn = command.arguments[0];
 
+    for (int y = 0; y < btn.count; y++)
+    {
+        NSDictionary *btnData = [btn objectAtIndex:y];
+        float PosX = [[btnData objectForKey:@"PosX"] floatValue];
+        float PosY = [[btnData objectForKey:@"PosY"] floatValue];
+
+        CGRect  viewRect = CGRectMake(PosX, PosY, 40, 40);
+        UIButton* closeBtn = [[UIButton alloc] initWithFrame:viewRect];
+
+        closeBtn.backgroundColor = [UIColor colorWithRed:(0.0 / 255.0) green:(126.0 / 255.0) blue:(180.0 / 255.0) alpha: 1];
+        closeBtn.layer.cornerRadius = 20;
+        closeBtn.layer.borderColor = [UIColor colorWithWhite:1 alpha: 1].CGColor;
+        closeBtn.layer.borderWidth = 3.0f;
+        [self.mapView addSubview:closeBtn];
+
+    }
+
+}
 
 - (void)hideMap:(CDVInvokedUrlCommand *)command
 {
-    if (!self.mapView || self.childView.hidden==YES) 
+    if (!self.mapView || self.childView.hidden==YES)
 	{
 		return;
 	}
@@ -214,7 +241,7 @@
 
 
 - (MKAnnotationView *) mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>) annotation {
-  
+
   if ([annotation class] != CDVAnnotation.class) {
     return nil;
   }
@@ -243,8 +270,8 @@
 	{
 		NSURL *url = [[NSURL alloc] initWithString:phAnnotation.imageURL];
 		[asyncImage loadImageFromURL:url];
-	} 
-	else 
+	}
+	else
 	{
 		[asyncImage loadDefaultImage];
 	}
@@ -275,11 +302,11 @@
 
 -(void)openAnnotation:(id <MKAnnotation>) annotation
 {
-	[ self.mapView selectAnnotation:annotation animated:YES];  
-	
+	[ self.mapView selectAnnotation:annotation animated:YES];
+
 }
 
-- (void) checkButtonTapped:(id)button 
+- (void) checkButtonTapped:(id)button
 {
 	UIButton *tmpButton = button;
 	NSString* jsString = [NSString stringWithFormat:@"%@(\"%i\");", self.buttonCallback, tmpButton.tag];
