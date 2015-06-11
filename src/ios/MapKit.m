@@ -296,7 +296,7 @@
 	{
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
 	}
-
+             [theMapView selectAnnotation:annView animated:YES];
 	return annView;
 }
 
