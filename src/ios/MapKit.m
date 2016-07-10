@@ -294,7 +294,6 @@
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
-	annView.image = [UIImage imageNamed:@"cpin.png"];	
 
 	return annView;
 }
