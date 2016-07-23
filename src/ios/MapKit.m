@@ -255,7 +255,7 @@
 
 	annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
-	annView.animatesDrop=YES;
+	//annView.animatesDrop=YES;
 	annView.canShowCallout = YES;
 	if ([phAnnotation.pinColor isEqualToString:@"120"])
 		annView.pinColor = MKPinAnnotationColorGreen;
