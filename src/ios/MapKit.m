@@ -255,14 +255,15 @@
 
 	annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
-	annView.animatesDrop=YES;
+	//annView.animatesDrop=YES;
 	annView.canShowCallout = YES;
-	if ([phAnnotation.pinColor isEqualToString:@"120"])
-		annView.pinColor = MKAnnotationColorGreen;
+	/*	if ([phAnnotation.pinColor isEqualToString:@"120"])
+		annView.pinColor = MKPinAnnotationColorGreen;
 	else if ([phAnnotation.pinColor isEqualToString:@"270"])
-		annView.pinColor = MKAnnotationColorPurple;
+		annView.pinColor = MKPinAnnotationColorPurple;
 	else
-		annView.pinColor = MKAnnotationColorRed;
+		annView.pinColor = MKPinAnnotationColorRed;
+	*/	
 
 	AsyncImageView* asyncImage = [[AsyncImageView alloc] initWithFrame:CGRectMake(0,0, 50, 32)];
 	asyncImage.tag = 999;
