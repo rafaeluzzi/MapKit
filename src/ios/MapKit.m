@@ -292,7 +292,7 @@
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 	}
-	annView.image = [UIImage imageNamed:@"cpin.png"];
+	annView.Image = [UIImage imageNamed:@"cpin.png"];
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
