@@ -293,27 +293,7 @@
 
 	}
 	
-// Save from documents
-
-NSString* path = [NSHomeDirectory() stringByAppendingString:@"/WWW/img/cpin.png"];
-
-BOOL Done = [[NSFileManager defaultManager] createFileAtPath:path 
-          contents:nil attributes:nil];
-
-if (!Done) {
-    NSLog(@"Error creating file %@", path);
-} else {
-    NSFileHandle* myFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
-   [myFileHandle writeData:UIImagePNGRepresentation(yourImage)];
-   [myFileHandle closeFile];
-}
-
-
-// Get from documents
-
-NSFileHandle* myFileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-UIImage* loadedImage = [UIImage imageWithData:[myFileHandle readDataToEndOfFile]];
-	annView.image = loadedImage;
+	annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.imageURL]]];
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
