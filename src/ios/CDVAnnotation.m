@@ -15,9 +15,9 @@
 @synthesize index = _index;
 @synthesize	placemark = _placemark;
 @synthesize	imageURL = _imageURL;
-@synthesize	pinURL;
 @synthesize	coordinate = _coordinate;
 @synthesize	pinColor;
+@synthesize	pinURL;
 @synthesize	startOpen;
 @synthesize selected;
 
