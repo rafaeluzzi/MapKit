@@ -15,8 +15,10 @@
 @synthesize index = _index;
 @synthesize	placemark = _placemark;
 @synthesize	imageURL = _imageURL;
+@synthesize	pinURL = _pinURL;
 @synthesize	coordinate = _coordinate;
 @synthesize	pinColor;
+@synthesize	startOpen;
 @synthesize selected;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate index:(NSInteger)index title:(NSString*)title subTitle:(NSString*)subTitle imageURL:(NSString*)imageURL {
