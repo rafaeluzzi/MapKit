@@ -292,9 +292,28 @@
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 	}
-	NSURL *urlpin = [[NSURL alloc] initWithString:phAnnotation.imageURL];
-	NSString* pinPath = [urlpin path];
-	annView.image = [UIImage imageWithContentsOfFile:pinPath];
+	
+// Save from documents
+
+NSString* path = [NSHomeDirectory() stringByAppendingString:@"/WWW/img/cpin.png"];
+
+BOOL Done = [[NSFileManager defaultManager] createFileAtPath:path 
+          contents:nil attributes:nil];
+
+if (!Done) {
+    NSLog(@"Error creating file %@", path);
+} else {
+    NSFileHandle* myFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+   [myFileHandle writeData:UIImagePNGRepresentation(yourImage)];
+   [myFileHandle closeFile];
+}
+
+
+// Get from documents
+
+NSFileHandle* myFileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+UIImage* loadedImage = [UIImage imageWithData:[myFileHandle readDataToEndOfFile]];
+	annView.image = loadedImage;
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
