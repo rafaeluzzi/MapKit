@@ -19,6 +19,8 @@
 	NSInteger _index;
 	MKPlacemark *_placemark;
 	NSString *pinColor;
+	NSString *pinURL;
+	NSString *startOpen;
 	BOOL selected;
 }
 
@@ -29,6 +31,8 @@
 @property (nonatomic, retain) MKPlacemark *placemark;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *pinColor;
+@property (nonatomic, copy) NSString *pinURL;
+@property (nonatomic, copy) NSString *startOpen;
 @property (nonatomic, assign) BOOL selected;
 
 - (void)notifyCalloutInfo:(MKPlacemark *)placemark;
