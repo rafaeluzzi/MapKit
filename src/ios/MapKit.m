@@ -292,9 +292,9 @@
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 	}
-	UIImage *anImage = nil;
-	anImage=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"www/img/cpin.png" ofType:nil]];
-	annView.image = anImage;
+	NSURL *urlpin = [[NSURL alloc] initWithString:phAnnotation.imageURL];
+	NSString* pinPath = [urlpin path];
+	annView.image = [UIImage imageWithContentsOfFile:pinPath];
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
