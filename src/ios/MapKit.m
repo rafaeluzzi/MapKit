@@ -292,7 +292,9 @@
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 	}
-	annView.Image = asyncImage;
+	UIImage *anImage = nil;
+	anImage=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"www/img/cpin.png" ofType:nil]];
+	annView.image = anImage;
 
 
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
