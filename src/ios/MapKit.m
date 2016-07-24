@@ -115,6 +115,8 @@
 
         NSString *pinColor = nil;
         NSString *imageURL = nil;
+        NSString *pinURL = nil;
+        NSString *startOpen = nil;
 
         if([[pinData valueForKey:@"icon"] isKindOfClass:[NSNumber class]])
         {
