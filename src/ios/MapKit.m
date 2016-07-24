@@ -125,6 +125,8 @@
             NSDictionary *iconOptions = [pinData valueForKey:@"icon"];
             pinColor = [[iconOptions valueForKey:@"pinColor" ] description];
             imageURL=[[iconOptions valueForKey:@"resource"] description];
+            pinURL=[[iconOptions valueForKey:@"customPin"] description];
+            startOpen=[[iconOptions valueForKey:@"startOpen"] description];
         }
 
 		CDVAnnotation *annotation = [[CDVAnnotation alloc] initWithCoordinate:pinCoord index:index title:title subTitle:subTitle imageURL:imageURL];
@@ -293,10 +295,11 @@
 
 	}
 	
-	annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.imageURL]]];
+	annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
 
-
+	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
+	}	
 
 	return annView;
 }
