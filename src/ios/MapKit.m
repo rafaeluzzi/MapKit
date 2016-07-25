@@ -299,7 +299,8 @@
 
 	}
 	
-	annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
+	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
+	annView.image = [UIImage imageNamed:@"icon.png" inBundle:nil compatibleWithTraitCollection:nil];
 
 	
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
