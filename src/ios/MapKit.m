@@ -300,10 +300,15 @@
 	}
 	
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
-	annView.image = [UIImage imageNamed:@"icon.png" inBundle:nil compatibleWithTraitCollection:nil];
+	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
+		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
+	}else{
+		annView.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
+	}
 
-	
+	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
+	}	
 		
 
 	return annView;
