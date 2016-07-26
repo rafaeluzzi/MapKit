@@ -256,7 +256,7 @@
 
        CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
        view.frame = startFrame;
-       delay = delay + 0.01;
+       delay = delay + 0.05;
        [UIView beginAnimations:@"drop" context:NULL];
        [UIView setAnimationDelay:delay];
        [UIView setAnimationDuration:0.45];
