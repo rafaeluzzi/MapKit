@@ -327,6 +327,26 @@
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+    MKAnnotationView *aV; 
+
+    float delay = 0.00;
+
+    for (aV in views) {
+        CGRect endFrame = aV.frame;
+
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 430.0, aV.frame.size.width, aV.frame.size.height);
+        delay = delay + 0.01;
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDelay:delay];
+        [UIView setAnimationDuration:0.45];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [aV setFrame:endFrame];
+        [UIView commitAnimations];
+    }
+}
+
 - (void)dealloc
 {
     if (self.mapView)
