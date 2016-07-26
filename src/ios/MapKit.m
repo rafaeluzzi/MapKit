@@ -246,6 +246,7 @@
  */
 - (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     CGRect visibleRect = [mapView annotationVisibleRect]; 
+    float delay = 0.00;
     for (MKAnnotationView *view in views) {
        // Don't pin drop if annotation is user location
         if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
@@ -255,9 +256,11 @@
 
        CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
        view.frame = startFrame;
-
-       [UIView beginAnimations:@"drop" context:NULL]; 
-       [UIView setAnimationDuration:1];
+       delay = delay + 0.01;
+       [UIView beginAnimations:@"drop" context:NULL];
+       [UIView setAnimationDelay:delay];
+       [UIView setAnimationDuration:0.45];
+       [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 
        view.frame = endFrame;
 
