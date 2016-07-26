@@ -244,7 +244,26 @@
     [jsString autorelease];
 }
  */
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+CGRect visibleRect = [mapView annotationVisibleRect];
+for (MKAnnotationView *view in views)
+ {
+    CGRect endFrame = view.frame;
+    endFrame.origin.y -= 15.0f;
+    endFrame.origin.x += 8.0f;
+    CGRect startFrame = endFrame;
+    startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+    view.frame = startFrame;
 
+    [UIView beginAnimations:@"drop" context:NULL];
+    [UIView setAnimationDuration:0.2];
+
+    view.frame = endFrame;
+
+    [UIView commitAnimations];
+ }
+}
 
 - (MKAnnotationView *) mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>) annotation {
 
