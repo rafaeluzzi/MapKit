@@ -328,11 +328,7 @@
 }
 
 	
-One problem with the code by Paul Shapiro is that it doesn't deal with when you add annotations below where the user is looking at the moment. Those annotations will float in mid-air before dropping because they are moved into the user's visible map rect.
-
-Another is that it also drops the user location blue dot. With this code below, you handle both user location and large amounts of map annotations off-screen. I've also added a nice bounce ;)
-
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+- (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV; 
 
     for (aV in views) {
