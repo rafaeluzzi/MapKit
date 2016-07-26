@@ -257,23 +257,13 @@
        CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
        view.frame = startFrame;
        delay = delay + 0.01;
-       /*[UIView beginAnimations:@"drop" context:NULL];
+       [UIView beginAnimations:@"drop" context:NULL];
        [UIView setAnimationDelay:delay];
        [UIView setAnimationDuration:0.45];
-       [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];*/
-       [UIView animateWithDuration:0.5
-                          delay:delay
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         view.frame = endFrame;
-                     }
-                     completion:^(BOOL finished){
-                         NSLog(@"Done!");
-                     }];
-
+       [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
        
-	//view.frame = endFrame;
-       //[UIView commitAnimations];
+	view.frame = endFrame;
+       [UIView commitAnimations];
     }
 }
 
