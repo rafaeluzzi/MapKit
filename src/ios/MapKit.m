@@ -327,23 +327,50 @@
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+	
+One problem with the code by Paul Shapiro is that it doesn't deal with when you add annotations below where the user is looking at the moment. Those annotations will float in mid-air before dropping because they are moved into the user's visible map rect.
+
+Another is that it also drops the user location blue dot. With this code below, you handle both user location and large amounts of map annotations off-screen. I've also added a nice bounce ;)
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV; 
 
-    float delay = 0.00;
-
     for (aV in views) {
+
+        // Don't pin drop if annotation is user location
+        if ([aV.annotation isKindOfClass:[MKUserLocation class]]) {
+            continue;
+        }
+
+        // Check if current annotation is inside visible map rect, else go to next one
+        MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
+        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
+            continue;
+        }
+
         CGRect endFrame = aV.frame;
 
-        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 430.0, aV.frame.size.width, aV.frame.size.height);
-        delay = delay + 0.01;
+        // Move annotation out of view
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - self.view.frame.size.height, aV.frame.size.width, aV.frame.size.height);
 
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDelay:delay];
-        [UIView setAnimationDuration:0.45];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [aV setFrame:endFrame];
-        [UIView commitAnimations];
+        // Animate drop
+        [UIView animateWithDuration:0.5 delay:0.04*[views indexOfObject:aV] options:UIViewAnimationCurveLinear animations:^{
+
+            aV.frame = endFrame;
+
+        // Animate squash
+        }completion:^(BOOL finished){
+            if (finished) {
+                [UIView animateWithDuration:0.05 animations:^{
+                    aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
+
+                }completion:^(BOOL finished){
+                    [UIView animateWithDuration:0.1 animations:^{
+                        aV.transform = CGAffineTransformIdentity;
+                    }];
+                }];
+            }
+        }];
     }
 }
 
