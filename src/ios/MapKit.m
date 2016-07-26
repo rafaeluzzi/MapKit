@@ -244,43 +244,24 @@
     [jsString autorelease];
 }
  */
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-    for (MKAnnotationView *aV in views) {
-
-        // Don't pin drop if annotation is user location
-        if ([aV.annotation isKindOfClass:[MKUserLocation class]]) {
+- (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    CGRect visibleRect = [mapView annotationVisibleRect]; 
+    for (MKAnnotationView *view in views) {
+       // Don't pin drop if annotation is user location
+        if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
             continue;
         }
+       CGRect endFrame = view.frame;
 
-        // Check if current annotation is inside visible map rect, else go to next one
-        MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
-        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
-            continue;
-        }
+       CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+       view.frame = startFrame;
 
-        CGRect endFrame = aV.frame;
+       [UIView beginAnimations:@"drop" context:NULL]; 
+       [UIView setAnimationDuration:1];
 
-        // Move annotation out of view
-        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - self.view.frame.size.height, aV.frame.size.width, aV.frame.size.height);
+       view.frame = endFrame;
 
-        // Animate drop
-        [UIView animateWithDuration:0.5 delay:0.04*[views indexOfObject:aV] options:UIViewAnimationCurveLinear animations:^{
-
-            aV.frame = endFrame;
-
-        // Animate squash
-        }completion:^(BOOL finished){
-            if (finished) {
-                [UIView animateWithDuration:0.05 animations:^{
-                    aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
-
-                }completion:^(BOOL finished){
-                    [UIView animateWithDuration:0.1 animations:^{
-                        aV.transform = CGAffineTransformIdentity;
-                    }];
-                }];
-            }
-        }];
+       [UIView commitAnimations];
     }
 }
 
