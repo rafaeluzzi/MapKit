@@ -252,6 +252,11 @@
         if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
             continue;
         }
+        // Check if current annotation is inside visible map rect, else go to next one
+        MKMapPoint point =  MKMapPointForCoordinate(view.annotation.coordinate);
+        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
+            continue;
+        }
        CGRect endFrame = view.frame;
 
        CGRect startFrame = endFrame; startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
