@@ -404,7 +404,38 @@
 
 	return annView;
 }
+//second part JRO
+//when a pin is selected or deselected, do something
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
+    NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
+    
+    //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
+    
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
+    [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
+}
 
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    //NSLog(@"De-Selected: %@",[view.annotation title]);
+    NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
+    [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
+}
+
+- (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
+{
+    NSLog(@"region did change animated");
+    float currentLat = theMapView.region.center.latitude;
+    float currentLon = theMapView.region.center.longitude;
+    float latitudeDelta = theMapView.region.span.latitudeDelta;
+    float longitudeDelta = theMapView.region.span.longitudeDelta;
+    
+    NSString* jsString = nil;
+    jsString = [[NSString alloc] initWithFormat:@"geo.onMapMove(\'%f','%f','%f','%f\');", currentLat,currentLon,latitudeDelta,longitudeDelta];
+    [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+    //[jsString autorelease];
+}
+//ends secod part JRO
 -(void)openAnnotation:(id <MKAnnotation>) annotation
 {
 	[ self.mapView selectAnnotation:annotation animated:YES];
