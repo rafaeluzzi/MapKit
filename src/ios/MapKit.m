@@ -244,6 +244,71 @@
     [jsString autorelease];
 }
  */
+ /**
+ * Set annotations and mapview settings
+ */
+
+- (void)setViewWithOptions:(NSDictionary *)options {
+    
+    // defaults
+    CGFloat height = 480.0f;
+    CGFloat offsetTop = 0.0f;
+    
+    if ([options objectForKey:@"height"])
+    {
+        height=[[options objectForKey:@"height"] floatValue];
+    }
+    if ([options objectForKey:@"offsetTop"])
+    {
+        offsetTop=[[options objectForKey:@"offsetTop"] floatValue];
+    }
+    if ([options objectForKey:@"buttonCallback"])
+    {
+        self.buttonCallback=[[options objectForKey:@"buttonCallback"] description];
+    }
+    
+    CLLocationCoordinate2D centerCoord = { [[options objectForKey:@"lat"] floatValue] , [[options objectForKey:@"lon"] floatValue] };
+    CLLocationDistance diameter = [[options objectForKey:@"diameter"] floatValue];
+    
+    CGRect webViewBounds = self.webView.bounds;
+    
+    CGRect mapBoundsChildView;
+    CGRect mapBoundsMapView;
+    mapBoundsChildView = CGRectMake(
+                                    webViewBounds.origin.x,
+                                    webViewBounds.origin.y + (offsetTop),
+                                    webViewBounds.size.width,
+                                    webViewBounds.origin.y + height
+                                    );
+    mapBoundsMapView = CGRectMake(
+                                  webViewBounds.origin.x,
+                                  webViewBounds.origin.y,
+                                  webViewBounds.size.width,
+                                  webViewBounds.origin.y + height
+                                  );
+    
+    //[self setFrame:mapBounds];
+    [self.childView setFrame:mapBoundsChildView];
+    [self.mapView setFrame:mapBoundsMapView];
+    
+    MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
+                                                                                                diameter*(height / webViewBounds.size.width),
+                                                                                                diameter*(height / webViewBounds.size.width))];
+    [self.mapView setRegion:region animated:YES];
+    
+    CGRect frame = CGRectMake(285.0,12.0,  29.0, 29.0);
+    
+    [ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
+    [ self.imageButton setFrame:frame];
+    [ self.imageButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)setMapData:(CDVInvokedUrlCommand *)command
+{
+    [self setViewWithOptions:command.arguments[0]];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+/***** end custom JRO ***/
 - (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     CGRect visibleRect = [mapView annotationVisibleRect]; 
     float delay = 0.00;
