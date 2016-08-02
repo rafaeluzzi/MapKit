@@ -409,18 +409,23 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-
+     // Annotation is your custom class that holds information about the annotation
+    if ([view.annotation isKindOfClass:[Annotation class]]) {
+        Annotation *annot = view.annotation;
+        NSInteger index = [self.arrayOfAnnotations indexOfObject:annot];
+    }
+    }
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%d%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", index, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
+
     //NSLog(@"De-Selected: %@",[view.annotation title]);
-    NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", elid, "')"];
+    NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
 }
 
