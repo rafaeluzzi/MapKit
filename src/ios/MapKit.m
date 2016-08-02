@@ -407,7 +407,7 @@
 //second part JRO
 //when a pin is selected or deselected, do something
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
+    NSString *latitude = [[NSString alloc] initWithFormat:@"%s",view.annotation.startOpen];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
