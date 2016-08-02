@@ -413,7 +413,7 @@
     //NSString* jsString = [NSString stringWithFormat:@"annotationTap(\"%i\");", phAnnotation.index];
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"annotationTap(\"%i\");", phAnnotation.index];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"annotationTap(\"%s\");", view.annotation.title];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
