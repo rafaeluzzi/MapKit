@@ -409,7 +409,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-    NSString *startopen = [[NSString alloc] initWithFormat:@"%f",view.annotation.startOpen];
+    NSString *startopen = [[NSString alloc] initWithFormat:@"%s",phAnnotation.startOpen];
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
