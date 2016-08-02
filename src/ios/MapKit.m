@@ -249,11 +249,11 @@
  */
 
 - (void)setViewWithOptions:(NSDictionary *)options {
-    
+
     // defaults
     CGFloat height = 480.0f;
     CGFloat offsetTop = 0.0f;
-    
+
     if ([options objectForKey:@"height"])
     {
         height=[[options objectForKey:@"height"] floatValue];
@@ -266,12 +266,12 @@
     {
         self.buttonCallback=[[options objectForKey:@"buttonCallback"] description];
     }
-    
+
     CLLocationCoordinate2D centerCoord = { [[options objectForKey:@"lat"] floatValue] , [[options objectForKey:@"lon"] floatValue] };
     CLLocationDistance diameter = [[options objectForKey:@"diameter"] floatValue];
-    
+
     CGRect webViewBounds = self.webView.bounds;
-    
+
     CGRect mapBoundsChildView;
     CGRect mapBoundsMapView;
     mapBoundsChildView = CGRectMake(
@@ -286,18 +286,18 @@
                                   webViewBounds.size.width,
                                   webViewBounds.origin.y + height
                                   );
-    
+
     //[self setFrame:mapBounds];
     [self.childView setFrame:mapBoundsChildView];
     [self.mapView setFrame:mapBoundsMapView];
-    
+
     MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
                                                                                                 diameter*(height / webViewBounds.size.width),
                                                                                                 diameter*(height / webViewBounds.size.width))];
     [self.mapView setRegion:region animated:YES];
-    
+
     CGRect frame = CGRectMake(285.0,12.0,  29.0, 29.0);
-    
+
     [ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
     [ self.imageButton setFrame:frame];
     [ self.imageButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -310,7 +310,7 @@
 }
 /***** end custom JRO ***/
 - (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-    CGRect visibleRect = [mapView annotationVisibleRect]; 
+    CGRect visibleRect = [mapView annotationVisibleRect];
     float delay = 0.00;
     for (MKAnnotationView *view in views) {
        // Don't pin drop if annotation is user location
@@ -331,7 +331,7 @@
        [UIView setAnimationDelay:delay];
        [UIView setAnimationDuration:0.45];
        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-       
+
 	view.frame = endFrame;
        [UIView commitAnimations];
     }
@@ -360,7 +360,7 @@
 		annView.pinColor = MKPinAnnotationColorPurple;
 	else
 		annView.pinColor = MKPinAnnotationColorRed;
-	*/	
+	*/
 
 	AsyncImageView* asyncImage = [[AsyncImageView alloc] initWithFrame:CGRectMake(0,0, 50, 32)];
 	asyncImage.tag = 999;
@@ -389,7 +389,7 @@
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 	}
-	
+
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
 	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
@@ -399,8 +399,8 @@
 
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
-	}	
-		
+	}
+
 
 	return annView;
 }
@@ -409,10 +409,10 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     //NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     //NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-    NSString *elid = [[NSString alloc] initWithFormat:@"%f", phAnnotation.index];
+    //NSString *elid = [[NSString alloc] initWithFormat:@"%f", phAnnotation.index];
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
-    
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", elid, "')"];
+
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('",phAnnotation.index, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
@@ -429,7 +429,7 @@
     float currentLon = theMapView.region.center.longitude;
     float latitudeDelta = theMapView.region.span.latitudeDelta;
     float longitudeDelta = theMapView.region.span.longitudeDelta;
-    
+
     NSString* jsString = nil;
     jsString = [[NSString alloc] initWithFormat:@"geo.onMapMove(\'%f','%f','%f','%f\');", currentLat,currentLon,latitudeDelta,longitudeDelta];
     [self.webView stringByEvaluatingJavaScriptFromString:jsString];
