@@ -409,7 +409,7 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-    NSString *startopen = [[NSString alloc] initWithFormat:@"%s",phAnnotation.startOpen];
+
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
@@ -418,6 +418,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    NSString *startopen = [[NSString alloc] initWithFormat:@"%s",phAnnotation.startOpen];
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", startopen, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
