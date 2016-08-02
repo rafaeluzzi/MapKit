@@ -407,13 +407,12 @@
 //second part JRO
 //when a pin is selected or deselected, do something
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    //NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
-    //NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-    //NSString *elid = [[NSString alloc] initWithFormat:@"%i", phAnnotation.index];
-    //NSString* jsString = [NSString stringWithFormat:@"annotationTap(\"%i\");", phAnnotation.index];
+    NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.lat];
+    NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.lon];
+
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationTap('", [view.annotation title], "')"];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
