@@ -409,11 +409,11 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     //NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     //NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-    NSString *elid = [[NSString alloc] initWithFormat:@"%i", phAnnotation.index];
-    //NSString* jsString = [NSString stringWithFormat:@"%@(\"%i\");", phAnnotation.index];
+    //NSString *elid = [[NSString alloc] initWithFormat:@"%i", phAnnotation.index];
+    //NSString* jsString = [NSString stringWithFormat:@"annotationTap(\"%i\");", phAnnotation.index];
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationTap('", elid, "')"];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"annotationTap(\"%i\");", phAnnotation.index];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
