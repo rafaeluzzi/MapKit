@@ -418,9 +418,9 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    NSString *startopen = [[NSString alloc] initWithFormat:@"%s",phAnnotation.startOpen];
+    //NSString *startopen = [[NSString alloc] initWithFormat:@"%s",phAnnotation.startOpen];
     //NSLog(@"De-Selected: %@",[view.annotation title]);
-    NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", startopen, "')"];
+    NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation index], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
 }
 
