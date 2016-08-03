@@ -419,8 +419,12 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
     NSInteger *yourIndex = Annot.index;
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
-    [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
+    if(yourIndex !=-1){
+        NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", yourIndex, "')"];
+        [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
+    }
+
+
     }
 }
 
