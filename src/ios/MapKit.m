@@ -417,7 +417,7 @@
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
-    NSInteger *yourIndex = Annot.index;
+    NSInteger *yourIndex = [self.arrayOfAnnotations indexOfObject:Annot];
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
     if(yourIndex !=-1){
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%d%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", yourIndex, "')"];
