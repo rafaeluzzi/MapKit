@@ -353,7 +353,7 @@
 	annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
 	//annView.animatesDrop=YES;
-	annView.canShowCallout = YES;
+	annView.canShowCallout = NO;
 	/*	if ([phAnnotation.pinColor isEqualToString:@"120"])
 		annView.pinColor = MKPinAnnotationColorGreen;
 	else if ([phAnnotation.pinColor isEqualToString:@"270"])
@@ -398,6 +398,7 @@
 	}
 
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
+        annView.canShowCallout = YES;
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
 	}
 
@@ -417,12 +418,12 @@
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
-    NSInteger *yourIndex = [self.arrayOfAnnotations indexOfObject:Annot];
+    Annot.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
-    if(yourIndex !=-1){
-        NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%d%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", yourIndex, "')"];
+
+        NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
-    }
+
 
 
     }
