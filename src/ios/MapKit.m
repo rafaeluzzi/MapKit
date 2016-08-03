@@ -411,12 +411,13 @@
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
 
 
-    //CDVAnnotation *phAnnotation=(CDVAnnotation *) annotation;
-    //NSString *ident = [NSString stringWithFormat:@"%i", phAnnotation.index];
+
 
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
+    CDVAnnotation *Annot=(CDVAnnotation *) annotation;
+    NSString *ident = [NSString stringWithFormat:@"%i", Annot.index];
     NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
     }
