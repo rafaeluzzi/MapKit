@@ -409,16 +409,14 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
-     // Annotation is your custom class that holds information about the annotation
-    if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
-        Annotation *annot = view.annotation;
-        NSInteger index = [self.arrayOfAnnotations indexOfObject:annot];
-    }
+
+    CDVAnnotation *phAnnotation = (CDVAnnotation *)mapView.annotation;
+    NSString *ident = [NSString stringWithFormat:@"%i", phAnnotation.index];
 
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%d%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", index, "')"];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", ident, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 }
 
