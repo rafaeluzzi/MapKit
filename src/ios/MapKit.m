@@ -416,9 +416,10 @@
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
-
-    NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", elid, "')"];
+    CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
+    NSInteger *yourIndex = Annot.index;
+    //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
     }
 }
