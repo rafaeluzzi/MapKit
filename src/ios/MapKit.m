@@ -410,18 +410,16 @@
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
 
-    if ([view.annotation class] != CDVAnnotation.class) {
-        return nil;
-    }
 
-    CDVAnnotation *phAnnotation=(CDVAnnotation *) annotation;
-    NSString *ident = [NSString stringWithFormat:@"%i", phAnnotation.index];
+    //CDVAnnotation *phAnnotation=(CDVAnnotation *) annotation;
+    //NSString *ident = [NSString stringWithFormat:@"%i", phAnnotation.index];
 
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
-
-    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", ident, "')"];
+if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
+    NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
