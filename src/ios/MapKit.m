@@ -417,8 +417,8 @@
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
-    CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
-    Annot.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
+    //CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
+    //Annot.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
 
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
