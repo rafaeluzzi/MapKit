@@ -414,7 +414,7 @@
         Annotation *annot = view.annotation;
         NSInteger index = [self.arrayOfAnnotations indexOfObject:annot];
     }
-    }
+
 
     //NSLog(@"Selected: %@%@%@",[view.annotation subtitle], latitude, longitude);
 
