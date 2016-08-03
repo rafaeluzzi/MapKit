@@ -420,7 +420,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     NSInteger *yourIndex = Annot.index;
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
     if(yourIndex !=-1){
-        NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", yourIndex, "')"];
+        NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%d%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", yourIndex, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
     }
 
