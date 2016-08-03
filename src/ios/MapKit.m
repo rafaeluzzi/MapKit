@@ -410,7 +410,7 @@
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
      // Annotation is your custom class that holds information about the annotation
-    if ([view.annotation isKindOfClass:[Annotation class]]) {
+    if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
         Annotation *annot = view.annotation;
         NSInteger index = [self.arrayOfAnnotations indexOfObject:annot];
     }
