@@ -410,6 +410,10 @@
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.latitude];
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f",view.annotation.coordinate.longitude];
 
+    if ([view.annotation class] != CDVAnnotation.class) {
+        return nil;
+    }
+
     CDVAnnotation *phAnnotation=(CDVAnnotation *) annotation;
     NSString *ident = [NSString stringWithFormat:@"%i", phAnnotation.index];
 
