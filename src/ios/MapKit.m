@@ -430,10 +430,12 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-
+    if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
+        view.image = [UIImage imageNamed:@"food.png"];
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
+    }
 }
 
 - (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
