@@ -420,7 +420,13 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     //CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
     //Annot.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
-        view.image = [UIImage imageNamed:@"default.png"];
+    [UIView transitionWithView:view
+                  duration:0.2f
+                   options:UIViewAnimationOptionTransitionCrossDissolve
+                animations:^{
+                    view.image = [UIImage imageNamed:@"default.png"];
+                } completion:nil];
+
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 
