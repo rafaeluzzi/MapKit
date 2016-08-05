@@ -6,7 +6,7 @@
 #import "MapKit.h"
 #import "CDVAnnotation.h"
 #import "AsyncImageView.h"
-
+#import <QuartzCore/QuartzCore.h>
 @implementation MapKitView
 
 @synthesize buttonCallback;
@@ -420,12 +420,26 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     //CDVAnnotation *Annot=(CDVAnnotation *)view.annotation;
     //Annot.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
     //NSString *elid = [[NSString alloc] initWithFormat:@"%d",view.annotation.index];
+    // grow
+     CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
+     CGAffineTransform inverseTransform = CGAffineTransformInvert(transform);
     [UIView transitionWithView:view
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
                     view.image = [UIImage imageNamed:@"default.png"];
-                } completion:nil];
+                    view.transform = transform;
+                } completion:^(BOOL finished) {
+                    //  Do whatever when the animation is finished
+                    [UIView animateWithDuration:0.4f
+                      delay:0.0f
+                      usingSpringWithDamping:0.40f
+                      initialSpringVelocity:0.2f
+                      options: UIViewAnimationOptionCurveEaseOut
+                      animations:^{
+                            view.transform = inverseTransform;
+                        } completion:nil];
+                }];
 
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
