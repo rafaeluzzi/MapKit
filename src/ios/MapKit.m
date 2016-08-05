@@ -451,11 +451,14 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
+        CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
+     CGAffineTransform inverseTransform = CGAffineTransformInvert(transform);
         [UIView transitionWithView:view
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
                     view.image = [UIImage imageNamed:@"food.png"];
+                    view.transform = transform;
                 } completion:nil];
 
     //NSLog(@"De-Selected: %@",[view.annotation title]);
