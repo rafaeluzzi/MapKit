@@ -451,7 +451,14 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
-        view.image = [UIImage imageNamed:@"food.png"];
+        [UIView transitionWithView:view
+                  duration:0.2f
+                   options:UIViewAnimationOptionTransitionCrossDissolve
+                animations:^{
+                    view.image = [UIImage imageNamed:@"food.png"];
+                    view.transform = CGAffineTransformIdentity;
+                } completion:nil];
+
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
