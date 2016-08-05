@@ -456,7 +456,6 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
                     view.image = [UIImage imageNamed:@"food.png"];
-                    view.transform = transform;
                 } completion:nil];
 
     //NSLog(@"De-Selected: %@",[view.annotation title]);
