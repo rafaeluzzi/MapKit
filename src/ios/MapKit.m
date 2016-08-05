@@ -6,7 +6,7 @@
 #import "MapKit.h"
 #import "CDVAnnotation.h"
 #import "AsyncImageView.h"
-#import <QuartzCore/QuartzCore.h>
+
 @implementation MapKitView
 
 @synthesize buttonCallback;
