@@ -437,10 +437,8 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                       initialSpringVelocity:0.2f
                       options: UIViewAnimationOptionCurveEaseOut
                       animations:^{
-                            view.transform = inverseTransform;
-                        } completion:^(BOOL finished) {
                             [view setTransform:CGAffineTransformIdentity];
-                        }];
+                        } completion:nil];
                 }];
 
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
