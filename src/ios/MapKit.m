@@ -463,12 +463,21 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
     UIButton * thisButton = [[UIButton alloc] initWithFrame:CGRectMake(50,50, 50, 10)];
     [thisButton.titleLabel setText:@"My Button"];
-    [thisButton addTarget:self action:@selector(handleMyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [thisButton addTarget:self action:@selector(deselectAllAnnotations:) forControlEvents:UIControlEventTouchUpInside];
     [myView addSubview:thisButton];
 
     // etc.
 
     return myView;
+
+}
+- (void)deselectAllAnnotations
+{
+
+    NSArray *selectedAnnotations = [self.mapViewObj.mapView selectedAnnotations];
+    for (int i = 0; i < [selectedAnnotations count]; i++) {
+        [self.mapViewObj.mapView deselectAnnotation:[selectedAnnotations objectAtIndex:i] animated:NO];
+    }
 
 }
 // ends add subview img on select
