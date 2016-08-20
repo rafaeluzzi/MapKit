@@ -456,7 +456,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
     UIView * myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     UIImageView * myImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [myImage setImage:[UIImage imageNamed:@"default.png"]];
+    [myImage setImage:[UIImage imageNamed:@"icon.png"]];
     [myView addSubview:myImage];
 
     UIButton * thisButton = [[UIButton alloc] initWithFrame:CGRectMake(50,50, 50, 10)];
@@ -483,6 +483,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
+    for (UIView *subview in view.subviews ){
+        [subview removeFromSuperview];
+    }
     }
 }
 
