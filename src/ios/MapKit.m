@@ -178,7 +178,7 @@
         closeBtn.layer.borderWidth = 3.0f;
         UIView * myImgView = [self createMyImgView];
        [self.mapView addSubview:myImgView];
-        [self.mapView addSubview:closeBtn];
+       // [self.mapView addSubview:closeBtn];
 
     }
 
