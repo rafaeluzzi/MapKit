@@ -176,6 +176,8 @@
         closeBtn.layer.cornerRadius = 20;
         closeBtn.layer.borderColor = [UIColor colorWithWhite:1 alpha: 1].CGColor;
         closeBtn.layer.borderWidth = 3.0f;
+        UIView * myImgView = [self createMyImgView];
+       [self.mapView addSubview:myImgView];
         [self.mapView addSubview:closeBtn];
 
     }
@@ -444,8 +446,8 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 
-       UIView * myImgView = [self createMyImgView];
-       [view addSubview:myImgView];
+       /*UIView * myImgView = [self createMyImgView];
+       [view addSubview:myImgView];*/
 
 
 
@@ -483,9 +485,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
-    for (UIView *subview in view.subviews ){
+    /*for (UIView *subview in view.subviews ){
         [subview removeFromSuperview];
-    }
+    }*/
     }
 }
 
