@@ -444,10 +444,32 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
         NSString *annotationTapFunctionString = [NSString stringWithFormat:@"%s%@%s%@%s%@%s", "annotationTap('", [view.annotation subtitle], "','", latitude, "','", longitude, "')"];
         [self.webView stringByEvaluatingJavaScriptFromString:annotationTapFunctionString];
 
+       UIView * myImgView = [self createMyImgView];
+       [view addSubview:myImgView];
+
 
 
     }
 }
+// add subview image on select
+- (UIView *) createMyImgView {
+
+    UIView * myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIImageView * myImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [myImage setImage:[UIImage imageNamed:@"default.png"]];
+    [myView addSubview:myImage];
+
+    UIButton * thisButton = [[UIButton alloc] initWithFrame:CGRectMake(50,50, 50, 10)];
+    [thisButton.titleLabel setText:@"My Button"];
+    [thisButton addTarget:self action:@selector(handleMyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [myView addSubview:thisButton];
+
+    // etc.
+
+    return myView;
+
+}
+// ends add subview img on select
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
