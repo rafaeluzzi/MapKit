@@ -463,7 +463,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
     UIButton * thisButton = [[UIButton alloc] initWithFrame:CGRectMake(50,50, 50, 10)];
     [thisButton.titleLabel setText:@"My Button"];
-    [thisButton addTarget:self action:@selector(deselectAllAnnotations:) forControlEvents:UIControlEventTouchUpInside];
+    [thisButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [myView addSubview:thisButton];
 
     // etc.
@@ -471,15 +471,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     return myView;
 
 }
-- (void)deselectAllAnnotations
-{
 
-    NSArray *selectedAnnotations = mapView.selectedAnnotations;
-for(id annotation in selectedAnnotations) {
-    [mapView deselectAnnotation:annotation animated:NO];
-}
-
-}
 // ends add subview img on select
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
@@ -525,6 +517,7 @@ for(id annotation in selectedAnnotations) {
 	UIButton *tmpButton = button;
 	NSString* jsString = [NSString stringWithFormat:@"%@(\"%i\");", self.buttonCallback, tmpButton.tag];
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
+    [mapView deselectAnnotation:view.annotation animated:true];
 }
 
 
