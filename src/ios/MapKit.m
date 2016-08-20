@@ -517,7 +517,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 	UIButton *tmpButton = button;
 	NSString* jsString = [NSString stringWithFormat:@"%@(\"%i\");", self.buttonCallback, tmpButton.tag];
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    [mapView deselectAnnotation:view.annotation animated:true];
+
 }
 
 
