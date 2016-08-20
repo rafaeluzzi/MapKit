@@ -474,10 +474,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 - (void)deselectAllAnnotations
 {
 
-    NSArray *selectedAnnotations = [self.mapViewObj.mapView selectedAnnotations];
-    for (int i = 0; i < [selectedAnnotations count]; i++) {
-        [self.mapViewObj.mapView deselectAnnotation:[selectedAnnotations objectAtIndex:i] animated:NO];
-    }
+    NSArray *selectedAnnotations = mapView.selectedAnnotations;
+for(id annotation in selectedAnnotations) {
+    [mapView deselectAnnotation:annotation animated:NO];
+}
 
 }
 // ends add subview img on select
