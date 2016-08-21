@@ -176,9 +176,8 @@
         closeBtn.layer.cornerRadius = 20;
         closeBtn.layer.borderColor = [UIColor colorWithWhite:1 alpha: 1].CGColor;
         closeBtn.layer.borderWidth = 3.0f;
-        UIView * myImgView = [self createMyImgView];
-       [self.mapView addSubview:myImgView];
-       // [self.mapView addSubview:closeBtn];
+        [closeBtn addTarget:self action:@selector(checkButtonTapped2:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mapView addSubview:closeBtn];
 
     }
 
