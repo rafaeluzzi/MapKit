@@ -521,6 +521,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 - (void) checkButtonTapped2:(id)button
 {
     UIButton *tmpButton = button;
+    NSArray *selectedAnnotations = self.mapView.selectedAnnotations;
+    for (CDVAnnotation *annotationView in selectedAnnotations) {
+        [self.mapView deselectAnnotation:annotationView animated:YES];
+    }
     NSString* jsString = [NSString stringWithFormat:@"btap(\"%s\");","uclicked"];
     [self.webView stringByEvaluatingJavaScriptFromString:jsString];
 
