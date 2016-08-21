@@ -463,7 +463,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 
     UIButton * thisButton = [[UIButton alloc] initWithFrame:CGRectMake(50,50, 50, 10)];
     [thisButton.titleLabel setText:@"My Button"];
-    [thisButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [thisButton addTarget:self action:@selector(checkButtonTapped2:) forControlEvents:UIControlEventTouchUpInside];
     [myView addSubview:thisButton];
 
     // etc.
@@ -519,7 +519,13 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
 
 }
+- (void) checkButtonTapped2:(id)button
+{
+    UIButton *tmpButton = button;
+    NSString* jsString = [NSString stringWithFormat:@"btap(\"%s\");","uclicked"];
+    [self.webView stringByEvaluatingJavaScriptFromString:jsString];
 
+}
 
 
 - (void)dealloc
