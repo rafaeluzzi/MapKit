@@ -480,10 +480,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
                     view.image = [UIImage imageNamed:@"food.png"];
-                } completion:^(BOOL finished){
-                    [ closeBtn removeFromSuperview];
-                      closeBtn = nil;
-                }];
+                } completion:nil];
 
 
 
