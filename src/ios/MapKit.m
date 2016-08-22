@@ -174,8 +174,8 @@
 
         //closeBtn.backgroundColor = [UIColor colorWithRed:(0.0 / 255.0) green:(126.0 / 255.0) blue:(180.0 / 255.0) alpha: 1];
         //closeBtn.layer.cornerRadius = 20;
-        closeBtn.layer.borderColor = [UIColor colorWithWhite:1 alpha: 1].CGColor;
-        closeBtn.layer.borderWidth = 3.0f;
+        //closeBtn.layer.borderColor = [UIColor colorWithWhite:1 alpha: 1].CGColor;
+        //closeBtn.layer.borderWidth = 3.0f;
         closeBtn.tag = 222;
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"btnclose.png"] forState:UIControlStateNormal];
         [closeBtn addTarget:self action:@selector(checkButtonTapped2:) forControlEvents:UIControlEventTouchUpInside];
