@@ -480,14 +480,15 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
                     view.image = [UIImage imageNamed:@"food.png"];
-                } completion:nil];
+                } completion:^(BOOL finished){
+                    [ closeBtn removeFromSuperview];
+                      closeBtn = nil;
+                }];
 
-     if(self.closeBtn)
-    {
-        [ self.closeBtn removeFromSuperview];
-        self.closeBtn = nil;
-    }
-    //NSLog(@"De-Selected: %@",[view.annotation title]);
+
+
+
+        //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
     /*for (UIView *subview in view.subviews ){
