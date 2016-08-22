@@ -482,6 +482,11 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     view.image = [UIImage imageNamed:@"food.png"];
                 } completion:nil];
 
+     if(self.closeBtn)
+    {
+        [ self.closeBtn removeFromSuperview];
+        self.closeBtn = nil;
+    }
     //NSLog(@"De-Selected: %@",[view.annotation title]);
     NSString *annotationDeselectFunctionString = [NSString stringWithFormat:@"%s%@%s", "annotationDeselect('", [view.annotation subtitle], "')"];
     [self.webView stringByEvaluatingJavaScriptFromString:annotationDeselectFunctionString];
