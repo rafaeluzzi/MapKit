@@ -396,8 +396,8 @@
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
 	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
-	}else{
-		annView.image = [UIImage imageNamed:@"default.png" inBundle:nil compatibleWithTraitCollection:nil];
+	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
+		annView.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
 	}
 
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
@@ -430,7 +430,11 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
-                    view.image = [UIImage imageNamed:@"default.png"];
+                    if(view.image == [UIImage imageNamed:@"food.png"]){
+                        view.image = [UIImage imageNamed:@"foodsel.png"];
+                    }else if(view.image == [UIImage imageNamed:@"venue.png"]){
+                        view.image = [UIImage imageNamed:@"venuesel.png"];
+                    }
                     view.transform = transform;
                 } completion:^(BOOL finished) {
                     //  Do whatever when the animation is finished
@@ -481,7 +485,11 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
-                    view.image = [UIImage imageNamed:@"food.png"];
+                    if(view.image == [UIImage imageNamed:@"foodsel.png"]){
+                        view.image = [UIImage imageNamed:@"food.png"];
+                    }else if(view.image == [UIImage imageNamed:@"venuesel.png"]){
+                        view.image = [UIImage imageNamed:@"venue.png"];
+                    }
                 } completion:nil];
 
 
