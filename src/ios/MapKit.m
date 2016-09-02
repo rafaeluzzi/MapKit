@@ -396,8 +396,10 @@
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
 	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annView.image setAccessibilityIdentifier:@"food"];
 	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
 		annView.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annView.image setAccessibilityIdentifier:@"venue"];
 	}
 
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
@@ -430,9 +432,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
-                    if(view.image == [UIImage imageNamed:@"food.png"]){
+                    NSString *file_name = [view.image accessibilityIdentifier];
+                    if([file_name isEqualToString:@"food"]){
                         view.image = [UIImage imageNamed:@"foodsel.png"];
-                    }else if(view.image == [UIImage imageNamed:@"venue.png"]){
+                    }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venuesel.png"];
                     }
                     view.transform = transform;
