@@ -435,8 +435,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     NSString *file_name = [view.image accessibilityIdentifier];
                     if([file_name isEqualToString:@"food"]){
                         view.image = [UIImage imageNamed:@"foodsel.png"];
+                        [view.image setAccessibilityIdentifier:@"food"];
                     }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venuesel.png"];
+                        [view.image setAccessibilityIdentifier:@"venue"];
                     }
                     view.transform = transform;
                 } completion:^(BOOL finished) {
@@ -488,9 +490,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
-                    if(view.image == [UIImage imageNamed:@"foodsel.png"]){
+                    if([file_name isEqualToString:@"food"]){
                         view.image = [UIImage imageNamed:@"food.png"];
-                    }else if(view.image == [UIImage imageNamed:@"venuesel.png"]){
+                    }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venue.png"];
                     }
                 } completion:nil];
