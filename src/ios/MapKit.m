@@ -490,6 +490,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                   duration:0.2f
                    options:UIViewAnimationOptionTransitionCrossDissolve
                 animations:^{
+                    NSString *file_name = [view.image accessibilityIdentifier];
                     if([file_name isEqualToString:@"food"]){
                         view.image = [UIImage imageNamed:@"food.png"];
                     }else if([file_name isEqualToString:@"venue"]){
