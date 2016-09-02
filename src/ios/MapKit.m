@@ -493,8 +493,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     NSString *file_name = [view.image accessibilityIdentifier];
                     if([file_name isEqualToString:@"food"]){
                         view.image = [UIImage imageNamed:@"food.png"];
+                        [view.image setAccessibilityIdentifier:@"food"];
                     }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venue.png"];
+                        [view.image setAccessibilityIdentifier:@"venue"];
                     }
                 } completion:nil];
 
