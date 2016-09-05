@@ -513,7 +513,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     }*/
     }
 }
-
+/*
 - (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
 {
     NSLog(@"region did change animated");
@@ -533,7 +533,7 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
 	[ self.mapView selectAnnotation:annotation animated:YES];
 
 }
-
+*/
 - (void) checkButtonTapped:(id)button
 {
 	UIButton *tmpButton = button;
