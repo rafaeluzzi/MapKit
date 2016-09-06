@@ -434,10 +434,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                 animations:^{
                     NSString *file_name = [view.image accessibilityIdentifier];
                     if([file_name isEqualToString:@"food"]){
-                        view.image = [UIImage imageNamed:@"foodsel.png"];
+                        view.image = [UIImage imageNamed:@"foodsel.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"food"];
                     }else if([file_name isEqualToString:@"venue"]){
-                        view.image = [UIImage imageNamed:@"venuesel.png"];
+                        view.image = [UIImage imageNamed:@"venuesel.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"venue"];
                     }
                     view.transform = transform;
@@ -492,10 +492,10 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                 animations:^{
                     NSString *file_name = [view.image accessibilityIdentifier];
                     if([file_name isEqualToString:@"food"]){
-                        view.image = [UIImage imageNamed:@"food.png"];
+                        view.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"food"];
                     }else if([file_name isEqualToString:@"venue"]){
-                        view.image = [UIImage imageNamed:@"venue.png"];
+                        view.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"venue"];
                     }
                 } completion:nil];
@@ -528,12 +528,12 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
     //[jsString autorelease];
 }
 //ends secod part JRO
+*/
 -(void)openAnnotation:(id <MKAnnotation>) annotation
 {
 	[ self.mapView selectAnnotation:annotation animated:YES];
 
 }
-*/
 - (void) checkButtonTapped:(id)button
 {
 	UIButton *tmpButton = button;
