@@ -397,7 +397,7 @@
 	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"food"];
-	}else{
+	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
 		annView.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"venue"];
 	}
