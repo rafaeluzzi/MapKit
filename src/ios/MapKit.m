@@ -136,13 +136,6 @@
 		annotation.selected = selected;
 		annotation.pinURL = pinURL;
 		annotation.startOpen = startOpen;
-        if ([annotation.pinURL isEqualToString:@"eat"]){
-        annotation.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
-        [annotation.image setAccessibilityIdentifier:@"food"];
-        }else if([annotation.pinURL isEqualToString:@"venue"]){
-        annotation.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
-        [annotation.image setAccessibilityIdentifier:@"venue"];
-        }
 
 		[self.mapView addAnnotation:annotation];
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
@@ -360,7 +353,8 @@
 
 	if (annView!=nil) return annView;
 
-	annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+	//annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+    annView=[[MKAnnotationView alloc] initWithAnnotation:annotation ];
 
 	//annView.animatesDrop=YES;
 	annView.canShowCallout = NO;
