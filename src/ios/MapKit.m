@@ -354,7 +354,7 @@
 	if (annView!=nil) return annView;
 
 	//annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-    annView=[[MKAnnotationView alloc] initWithAnnotation:annotation ];
+    annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
 	//annView.animatesDrop=YES;
 	annView.canShowCallout = NO;
