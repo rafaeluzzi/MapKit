@@ -401,7 +401,7 @@
 	}
 
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
-	/*if ([phAnnotation.pinURL isEqualToString:@"eat"]){
+	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"food"];
 	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
@@ -412,7 +412,7 @@
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
         annView.canShowCallout = YES;
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
-	}*/
+	}
 
 
 	return annView;
