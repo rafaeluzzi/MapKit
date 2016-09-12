@@ -351,7 +351,7 @@
 
 	MKAnnotationView *annView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
 
-	if (annView!=nil) return annView;
+	//if (annView!=nil) return annView;
 
 	//annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
     annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
