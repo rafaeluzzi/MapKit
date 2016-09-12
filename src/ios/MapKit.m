@@ -136,6 +136,13 @@
 		annotation.selected = selected;
 		annotation.pinURL = pinURL;
 		annotation.startOpen = startOpen;
+        if ([annotation.pinURL isEqualToString:@"eat"]){
+        annotation.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annotation.image setAccessibilityIdentifier:@"food"];
+        }else if([annotation.pinURL isEqualToString:@"venue"]){
+        annotation.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annotation.image setAccessibilityIdentifier:@"venue"];
+        }
 
 		[self.mapView addAnnotation:annotation];
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
@@ -394,7 +401,7 @@
 	}
 
 	//annView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:phAnnotation.pinURL]]];
-	if ([phAnnotation.pinURL isEqualToString:@"eat"]){
+	/*if ([phAnnotation.pinURL isEqualToString:@"eat"]){
 		annView.image = [UIImage imageNamed:@"food.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"food"];
 	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
@@ -405,7 +412,7 @@
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
         annView.canShowCallout = YES;
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
-	}
+	}*/
 
 
 	return annView;
