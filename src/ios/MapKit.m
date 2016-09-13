@@ -352,9 +352,8 @@
 	MKAnnotationView *annView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
 
 	//if (annView!=nil) return annView;
-
-	//annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-    annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+    if (annView == nil)
+        annView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
 	//annView.animatesDrop=YES;
 	annView.canShowCallout = NO;
