@@ -400,7 +400,10 @@
 	}else if([phAnnotation.pinURL isEqualToString:@"venue"]){
 		annView.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"venue"];
-	}
+	}else if([phAnnotation.pinURL isEqualToString:@"foodtruck"]){
+        annView.image = [UIImage imageNamed:@"foodtruck.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annView.image setAccessibilityIdentifier:@"foodtruck"];
+    }
 
 	if ([phAnnotation.startOpen isEqualToString:@"yes"]){
         annView.canShowCallout = YES;
@@ -439,6 +442,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venuesel.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"venue"];
+                    }else if([file_name isEqualToString:@"foodtruck"]){
+                        view.image = [UIImage imageNamed:@"foodtrucksel.png" inBundle:nil compatibleWithTraitCollection:nil];
+                        [view.image setAccessibilityIdentifier:@"foodtruck"];
                     }
                     view.transform = transform;
                 } completion:^(BOOL finished) {
@@ -497,7 +503,11 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     }else if([file_name isEqualToString:@"venue"]){
                         view.image = [UIImage imageNamed:@"venue.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"venue"];
+                    }else if([file_name isEqualToString:@"foodtruck"]){
+                        view.image = [UIImage imageNamed:@"foodtruck.png" inBundle:nil compatibleWithTraitCollection:nil];
+                        [view.image setAccessibilityIdentifier:@"foodtruck"];
                     }
+
                 } completion:nil];
 
 
