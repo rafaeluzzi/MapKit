@@ -86,6 +86,8 @@ In case everything miserably fails and you can't build your project, you might n
         <resource-file src="src/ios/venuesel.png" />
         <resource-file src="src/ios/venue@2x.png" />
         <resource-file src="src/ios/venuesel@2x.png" />
+        <resource-file src="src/ios/foodtruck@2x.png" />
+        <resource-file src="src/ios/foodtrucksel@2x.png" />
         <resource-file src="src/ios/btnclose.png" />
 
         <header-file src="src/ios/AsyncImageView.h" />
