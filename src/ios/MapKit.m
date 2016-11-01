@@ -338,11 +338,6 @@
 
 	view.frame = endFrame;
        [UIView commitAnimations];
-       MKMapRect zoomRect = MKMapRectNull;
-    MKMapPoint annotationPoint = MKMapPointForCoordinate(view.annotation.coordinate);
-    MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
-    zoomRect = MKMapRectUnion(zoomRect, pointRect);
-    [mapView setVisibleMapRect:zoomRect animated:YES];
     }
 }
 
