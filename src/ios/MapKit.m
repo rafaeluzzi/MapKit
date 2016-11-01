@@ -311,6 +311,7 @@
     [self setViewWithOptions:command.arguments[0]];
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
+
 /***** end custom JRO ***/
 - (void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     CGRect visibleRect = [mapView annotationVisibleRect];
@@ -337,6 +338,11 @@
 
 	view.frame = endFrame;
        [UIView commitAnimations];
+       MKMapRect zoomRect = MKMapRectNull;
+    MKMapPoint annotationPoint = MKMapPointForCoordinate(view.annotation.coordinate);
+    MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
+    zoomRect = MKMapRectUnion(zoomRect, pointRect);
+    [mapView setVisibleMapRect:zoomRect animated:YES];
     }
 }
 
