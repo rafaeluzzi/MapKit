@@ -400,6 +400,9 @@
     }else if([phAnnotation.pinURL isEqualToString:@"foodtruck"]){
         annView.image = [UIImage imageNamed:@"foodtruck.png" inBundle:nil compatibleWithTraitCollection:nil];
         [annView.image setAccessibilityIdentifier:@"foodtruck"];
+    }else if([phAnnotation.pinURL isEqualToString:@"nightlife"]){
+        annView.image = [UIImage imageNamed:@"nightlife.png" inBundle:nil compatibleWithTraitCollection:nil];
+        [annView.image setAccessibilityIdentifier:@"nightlife"];
     }
 
     if ([phAnnotation.startOpen isEqualToString:@"yes"]){
@@ -442,6 +445,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     }else if([file_name isEqualToString:@"foodtruck"]){
                         view.image = [UIImage imageNamed:@"foodtrucksel.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"foodtruck"];
+                    }else if([file_name isEqualToString:@"nightlife"]){
+                        view.image = [UIImage imageNamed:@"nightlifesel.png" inBundle:nil compatibleWithTraitCollection:nil];
+                        [view.image setAccessibilityIdentifier:@"nightlife"];
                     }
                     view.transform = transform;
                 } completion:^(BOOL finished) {
@@ -503,6 +509,9 @@ if ([view.annotation isKindOfClass:[CDVAnnotation class]]) {
                     }else if([file_name isEqualToString:@"foodtruck"]){
                         view.image = [UIImage imageNamed:@"foodtruck.png" inBundle:nil compatibleWithTraitCollection:nil];
                         [view.image setAccessibilityIdentifier:@"foodtruck"];
+                    }else if([file_name isEqualToString:@"nightlife"]){
+                        view.image = [UIImage imageNamed:@"nightlife.png" inBundle:nil compatibleWithTraitCollection:nil];
+                        [view.image setAccessibilityIdentifier:@"nightlife"];
                     }
 
                 } completion:nil];
